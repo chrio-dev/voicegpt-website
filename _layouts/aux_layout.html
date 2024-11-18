@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Other Meta-Tags and Links -->
   {% include google_tag.html %}
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }}</title>
-  <meta name="description" content="{{ site.description }}">
-  <meta name="keywords" content="{{ site.keywords }}">
-
-  <!-- Favicons -->
-  <link href="{{ site.url }}/assets/img/favicon.png" rel="icon">
   <link href="{{ site.url }}/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -22,6 +15,7 @@
   <!-- Vendor CSS Files -->
   <link href="{{ site.url }}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="{{ site.url }}/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
   <link href="{{ site.url }}/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="{{ site.url }}/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="{{ site.url }}/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
@@ -29,7 +23,6 @@
   <!-- Main CSS File -->
   <link href="{{ site.url }}/assets/css/main.css" rel="stylesheet">
 </head>
-
 <body class="blog-page">
   {% include header.html %}
 
@@ -39,22 +32,19 @@
   
   {% include footer.html %}
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Preloader -->
-    <div id="preloader"></div>
-  
-    <!-- Vendor JS Files -->
-    <script src="{{ site.url }}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ site.url }}/assets/vendor/php-email-form/validate.js"></script>
-    <script src="{{ site.url }}/assets/vendor/aos/aos.js"></script>
-    <script src="{{ site.url }}/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="{{ site.url }}/assets/vendor/swiper/swiper-bundle.min.js"></script>
-  
-    <!-- Main JS File -->
-    <script src="{{ site.url }}/assets/js/main.js"></script>
-  
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ site.url }}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ site.url }}/assets/vendor/aos/aos.js"></script>
+  <script src="{{ site.url }}/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="{{ site.url }}/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="{{ site.url }}/assets/js/main.js"></script>
 </body>
-
 </html>
