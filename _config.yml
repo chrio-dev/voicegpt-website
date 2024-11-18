@@ -35,7 +35,6 @@ plugins:
   - jekyll-sitemap
 
 exclude:
-- .sass-cache/
 - .jekyll-cache/
 - Gemfile
 - Gemfile.lock
