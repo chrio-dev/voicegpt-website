@@ -22,7 +22,7 @@ title: AlexaGPT
 name: AlexaGPT
 email: info@chrio.dev
 description: AlexaGPT is an Amazon skill that integrates GPT with Alexa, enabling natural conversations, learning, and increased productivity.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "" # keep empty because of custom domain
 url: "http://alexagpt.world"
 twitter_username: #jekyllrb
 github_username:  #jekyll
