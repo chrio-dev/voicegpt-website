@@ -33,6 +33,16 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
+# Jekyll SEO Tag configuration
+jekyll_seo_tag:
+  title: "Alexa GPT"
+  description: "Alexa GPT is an Amazon skill that integrates GPT with Alexa, enabling natural conversations, learning, and increased productivity."
+  url: "http://alexagpt.world"
+  twitter:
+    username: your_twitter_username
+  facebook:
+    publisher: your_facebook_page
+
 exclude:
 - .jekyll-cache/
 - Gemfile
