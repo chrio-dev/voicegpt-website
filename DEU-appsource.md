@@ -1,3 +1,10 @@
+---
+layout: page
+title: About
+permalink: /about/
+sitemap: false
+---
+
 GPT ist Ihr persönlicher Konversationspartner und Wissenshelfer, verfügbar als Alexa-Skill. Nutzen Sie die Kraft der fortschrittlichsten Sprachmodelle von OpenAI, einschließlich ChatGPT, um Antworten auf Ihre Fragen zu erhalten. Dieser Alexa-Skill ist ein Chatbot, der künstliche Intelligenz einsetzt, um auf natürliche und intuitive Weise mit Ihnen zu kommunizieren.
 
 Kernfunktionalität:

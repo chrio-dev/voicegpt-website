@@ -33,6 +33,15 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
+# Jekyll Feed
+feed:
+  path: atom.xml
+
+# Sitemap settings
+sitemap:
+  changefreq: "weekly"
+  priority: 0.7
+
 # Jekyll SEO Tag configuration
 jekyll_seo_tag:
   title: "Alexa GPT"
@@ -61,10 +70,3 @@ markdown: kramdown
 # Permalinks
 permalink: /:categories/:year/:month/:day/:title/
 
-# Jekyll Feed
-feed:
-  path: atom.xml
-
-sitemap:
-  changefreq: "weekly"
-  priority: 0.7
