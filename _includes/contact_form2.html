@@ -13,10 +13,9 @@
     <div class="col-md-12">
       <textarea class="form-control" name="message" rows="4" placeholder="Message" required=""></textarea>
     </div>
-    <!-- 
     <div class="form-group mt-3">
       <input class="form-control" type="file" name="resume">
-    </div> -->
+    </div>
     <div class="form-group mt-3">
       <div class="g-recaptcha" data-sitekey="6Le44oQqAAAAAAwsntDYFsNqoLm6_khx4VC7KH2z"></div>
     </div>
@@ -29,6 +28,7 @@
   </div>
 </form>
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
   document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -40,36 +40,42 @@
       jsonData[key] = value;
     });
 
-    console.log('JSON Data:', JSON.stringify(jsonData));
+    grecaptcha.ready(function() {
+      grecaptcha.execute('6Le44oQqAAAAAAwsntDYFsNqoLm6_khx4VC7KH2z', {action: 'submit'}).then(function(token) {
+        jsonData['g-recaptcha-response'] = token;
 
-    fetch(form.action, {
-      method: 'POST',
-      body: JSON.stringify(jsonData),
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest'
-      }
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.text();
-      } else {
-        throw new Error(`${response.status} ${response.statusText} ${response.url}`);
-      }
-    })
-    .then(data => {
-      form.querySelector('.loading').classList.remove('d-block');
-      if (data.trim() == 'OK') {
-        form.querySelector('.sent-message').classList.add('d-block');
-        form.reset();
-      } else {
-        throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + form.action);
-      }
-    })
-    .catch(error => {
-      form.querySelector('.loading').classList.remove('d-block');
-      form.querySelector('.error-message').innerHTML = error;
-      form.querySelector('.error-message').classList.add('d-block');
+        console.log('JSON Data:', JSON.stringify(jsonData));
+
+        fetch(form.action, {
+          method: 'POST',
+          body: JSON.stringify(jsonData),
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.text();
+          } else {
+            throw new Error(`${response.status} ${response.statusText} ${response.url}`);
+          }
+        })
+        .then(data => {
+          form.querySelector('.loading').classList.remove('d-block');
+          if (data.trim() == 'OK') {
+            form.querySelector('.sent-message').classList.add('d-block');
+            form.reset();
+          } else {
+            throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + form.action);
+          }
+        })
+        .catch(error => {
+          form.querySelector('.loading').classList.remove('d-block');
+          form.querySelector('.error-message').innerHTML = error;
+          form.querySelector('.error-message').classList.add('d-block');
+        });
+      });
     });
   });
 </script>
