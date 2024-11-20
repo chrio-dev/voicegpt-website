@@ -33,17 +33,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         );
 
         $context  = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
+        $result = @file_get_contents($url, false, $context);
 
         if ($result === FALSE) {
-            echo 'Error: Form submission failed.';
+            $error = error_get_last();
+            error_log('Error: Form submission failed. ' . $error['message']);
+            echo 'Error: Form submission failed. ' . $error['message'];
         } else {
+            error_log('Success: Your message has been sent.');
             echo 'Success: Your message has been sent.';
         }
     } else {
+        error_log('Error: reCAPTCHA verification failed.');
         echo 'Error: reCAPTCHA verification failed.';
     }
 } else {
+    error_log('Error: Invalid request method.');
     echo 'Error: Invalid request method.';
 }
 ?>
