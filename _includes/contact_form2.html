@@ -1,33 +1,29 @@
-<!-- with contact.php-->
- 
-<form action="contact.php" method="post" role="form" class="php-email-form" ata-aos="fade-up" data-aos-delay="400" data-recaptcha-site-key="6Le44oQqAAAAAAwsntDYFsNqoLm6_khx4VC7KH2z">
+<!-- without contact.php-->
+<!-- Contact form without contact.php -->
+<form action="https://prod-03.germanywestcentral.logic.azure.com:443/workflows/e834aa3480eb4960b33fff48fc161409/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=h50ppIGoeraLTMocNWmN7Jku5VOiNCvWOdwGbKp5yyg" method="post" enctype="multipart/form-data" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
   <div class="row gy-4">
-
     <div class="col-md-6">
       <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
     </div>
-
-    <div class="col-md-6 ">
+    <div class="col-md-6">
       <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
     </div>
-
     <div class="col-md-12">
       <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
     </div>
-
     <div class="col-md-12">
       <textarea class="form-control" name="message" rows="4" placeholder="Message" required=""></textarea>
     </div>
-
     <div class="form-group mt-3">
       <input class="form-control" type="file" name="resume">
     </div>
-
+    <div class="form-group mt-3">
+      <div class="g-recaptcha" data-sitekey="6Le44oQqAAAAAAwsntDYFsNqoLm6_khx4VC7KH2z"></div>
+    </div>
     <div class="col-md-12 text-center">
       <div class="loading">Loading</div>
       <div class="error-message"></div>
       <div class="sent-message">Your message has been sent. Thank you!</div>
-
       <button type="submit">Send Message</button>
     </div>
   </div>
