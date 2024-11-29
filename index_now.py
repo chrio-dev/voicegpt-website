@@ -11,9 +11,9 @@ payload = {
     "key": "f296c5404b194139b17052c28f935c7b",
     "keyLocation": "https://alexagpt.world/f296c5404b194139b17052c28f935c7b.txt",
     "urlList": [
-        "http://alexagpt.world",
-        "http://alexagpt.world/imprint/",
-        "http://alexagpt.world/privacy_policy/"
+        "https://alexagpt.world",
+        "https://alexagpt.world/imprint/",
+        "https://alexagpt.world/privacy_policy/"
     ]
 }
 
