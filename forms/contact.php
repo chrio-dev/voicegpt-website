@@ -1,41 +1,54 @@
 <?php
-  /**
-  * Requires the "PHP Email Form" library
-  * The "PHP Email Form" library is available only in the pro version of the template
-  * The library should be uploaded to: vendor/php-email-form/php-email-form.php
-  * For more info and help: https://bootstrapmade.com/php-email-form/
-  */
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
 
-  // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'contact@example.com';
+    // Validate reCAPTCHA
+    $recaptcha_secret = '6Le44oQqAAAAAAwsntDYFsNqoLm6_khx4VC7KH2z';
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+    $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
 
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
-    include( $php_email_form );
-  } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
-  }
+    $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+    $recaptcha = json_decode($recaptcha);
 
-  $contact = new PHP_Email_Form;
-  $contact->ajax = true;
-  
-  $contact->to = $receiving_email_address;
-  $contact->from_name = $_POST['name'];
-  $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
+    if ($recaptcha->success) {
+        // Prepare data to send to Power Automate
+        $data = array(
+            'name' => $name,
+            'email' => $email,
+            'subject' => $subject,
+            'message' => $message
+        );
 
-  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  /*
-  $contact->smtp = array(
-    'host' => 'example.com',
-    'username' => 'example',
-    'password' => 'pass',
-    'port' => '587'
-  );
-  */
+        $url = 'https://prod-03.germanywestcentral.logic.azure.com:443/workflows/e834aa3480eb4960b33fff48fc161409/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=h50ppIGoeraLTMocNWmN7Jku5VOiNCvWOdwGbKp5yyg';
 
-  $contact->add_message( $_POST['name'], 'From');
-  $contact->add_message( $_POST['email'], 'Email');
-  $contact->add_message( $_POST['message'], 'Message', 10);
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/json\r\n",
+                'method'  => 'POST',
+                'content' => json_encode($data),
+            ),
+        );
 
-  echo $contact->send();
+        $context  = stream_context_create($options);
+        $result = @file_get_contents($url, false, $context);
+
+        if ($result === FALSE) {
+            $error = error_get_last();
+            error_log('Error: Form submission failed. ' . $error['message']);
+            echo 'Error: Form submission failed. ' . $error['message'];
+        } else {
+            error_log('Success: Your message has been sent.');
+            echo 'Success: Your message has been sent.';
+        }
+    } else {
+        error_log('Error: reCAPTCHA verification failed.');
+        echo 'Error: reCAPTCHA verification failed.';
+    }
+} else {
+    error_log('Error: Invalid request method.');
+    echo 'Error: Invalid request method.';
+}
 ?>

@@ -18,38 +18,62 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
-email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+title: AlexaGPT
+name: AlexaGPT
+email: info@chrio.dev
+description: AlexaGPT is an Amazon skill that integrates GPT with Alexa, enabling natural conversations, learning, and increased productivity.
+baseurl: "/gpt" # keep empty because of custom domain
+url: "https://chrio-dev.github.io"
+twitter_username: #jekyllrb
+github_username:  #jekyll
 
 # Build settings
-theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-polyglot
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+# Jekyll Feed
+feed:
+  path: atom.xml
+
+# Sitemap settings
+sitemap:
+  changefreq: "weekly"
+  priority: 0.7
+
+# Jekyll SEO Tag configuration
+jekyll_seo_tag:
+  title: "Alexa GPT"
+  description: "Alexa GPT is an Amazon skill that integrates GPT with Alexa, enabling natural conversations, learning, and increased productivity."
+  url: "https://alexagpt.world"
+  twitter:
+    username: your_twitter_username
+  facebook:
+    publisher: your_facebook_page
+
+exclude:
+- .jekyll-cache/
+- Gemfile
+- Gemfile.lock
+- README.md
+- Rakefile
+- node_modules
+- vendor/bundle/
+- vendor/cache/
+- vendor/gems/
+- vendor/ruby/
+
+# Build settings
+markdown: kramdown
+
+# Permalinks
+permalink: /:categories/:year/:month/:day/:title/
+
+
+languages: ["en", "it", "de", "fr"]
+default_lang: "en"
+exclude_from_localization: ["javascript", "images", "css", "public"]
+parallel_localization: false
+lang_from_path: true

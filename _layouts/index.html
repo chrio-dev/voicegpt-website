@@ -2,12 +2,18 @@
 <html lang="en">
 
 <head>
+  <!-- Andere Meta-Tags und Links -->
+  {% include google_tag.html %}
+  {% seo %}
+  {% include meta_tags.html %}
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Alex GPT</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-
+  <title>Alexa GPT - Your AI Assistant skill on Alexa</title>
+  <meta name="description" content="Alexa GPT is an Amazon Alexa skill that integrates GPT with Alexa, enabling natural conversations, learning, and increased productivity.">
+  <meta name="keywords" content="Alexa, GPT, AI, Assistant, Amazon, Skill">
+  <meta name="author" content="Chrio GmbH">
+  <link rel="canonical" href="https://alexagpt.world/">
+  
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -26,6 +32,9 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- Recaptcha -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6Le44oQqAAAAAAwsntDYFsNqoLm6_khx4VC7KH2z"></script>
 
   <!-- =======================================================
   * Template Name: QuickStart
@@ -49,33 +58,14 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html#hero" class="active">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#features">Features</a></li>
-          <li><a href="index.html#services">Services</a></li>
           <li><a href="index.html#pricing">Pricing</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="index.html#about">Get Started</a>
+      <a class="btn-getstarted" href="index.html#features">Get Started</a>
 
     </div>
   </header>
@@ -92,8 +82,13 @@
           <h1 data-aos="fade-up">Welcome to <span>Alexa GPT</span></h1>
             <p data-aos="fade-up" data-aos-delay="100">Start your journey with Alexa GPT and unlock new productivity and learning possibilities<br></p>
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-            <a href="#about" class="btn-get-started">Get Started</a>
-            <a href="https://www.amazon.de/dp/B0CTHQ4KSZ/" class="glightbox btn-watch-video d-flex align-items-center"><img src="assets/img/amazon-icon.png" alt="Amazon Icon" class="icon me-2"><span>Get Alexa Skill</span></a>
+            <a href="#features" class="btn-get-started">Get Started</a>
+            <a href="https://www.amazon.de/dp/B0CTHQ4KSZ/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.amazon.de/dp/B0CTHQ4KSZ/" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center ms-3">
+                <img src="assets/img/amazon-icon.png" alt="Amazon Icon" class="icon me-2">
+                <span class="fw-bold text-dark">Get Alexa Skill</span>
+                <i class="bi bi-box-arrow-up-right ms-2" style="font-size: 0.8em;"></i>
+                </a>
           </div>
           <img src="assets/img/hero-services-img.webp" class="img-fluid hero-img" alt="" data-aos="zoom-out" data-aos-delay="300">
         </div>
@@ -108,9 +103,19 @@
 
         <div class="row gy-4">
 
+          <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item d-flex">
+              <div class="icon flex-shrink-0"><i class="bi-chat-dots"></i></div>
+              <div>
+                <h4 class="title"><a href="#" class="stretched-link">Learn more</a></h4>
+                <p class="description">Enhance your knowledge with Alexa GPT's interactive dialogues</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
           <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
+              <div class="icon flex-shrink-0"><i class="bi-house"></i></div>
               <div>
                 <h4 class="title"><a href="#" class="stretched-link">Home Assistance</a></h4>
                 <p class="description">Alexa GPT simplifies daily tasks with intuitive voice control and smart home integration</p>
@@ -121,83 +126,28 @@
 
           <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
+              <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
               <div>
                 <h4 class="title"><a href="#" class="stretched-link">Finish work faster</a></h4>
                 <p class="description">Experience joy and efficiency in your work with Alexa GPT's smart assistance</p>
               </div>
             </div>
           </div><!-- End Service Item -->
-
-          <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
-              <div>
-                <h4 class="title"><a href="#" class="stretched-link">Learn more</a></h4>
-                <p class="description">Enhance your knowledge with Alexa GPT's interactive dialogues</p>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
+          
         </div>
 
       </div>
 
     </section><!-- /Featured Services Section -->
 
-    <!-- About Section 
-    <section id="about" class="about section">
 
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-            <p class="who-we-are">Who We Are</p>
-            <h3>Unleashing Potential with Creative Strategy</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-            </ul>
-            <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-          </div>
-
-          <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
-            <div class="row gy-4">
-              <div class="col-lg-6">
-                <img src="assets/img/about-company-1.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="col-lg-6">
-                <div class="row gy-4">
-                  <div class="col-lg-12">
-                    <img src="assets/img/about-company-2.jpg" class="img-fluid" alt="">
-                  </div>
-                  <div class="col-lg-12">
-                    <img src="assets/img/about-company-3.jpg" class="img-fluid" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- /About Section -->
-
-        <!-- Features Section -->
+    <!-- Features Section -->
     <section id="features" class="features section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Features</h2>
-        <p>Discover the power of Alexa GPT and enhance your daily tasks effortlessly</p>
+        <p>Discover the power of the Alexa GPT skill and get a personal voice assistance</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -212,7 +162,7 @@
                   <div>
                     <h4 class="d-none d-lg-block">Ask anything</h4>
                     <p>
-                        Engage in natural dialogues and ask questions with Alexa, powered by GPT-4 and advanced AI technology
+                        Engage in natural dialogues and ask questions with Alexa, powered by GPT-4o and advanced AI technology
                     </p>
                   </div>
                 </a>
@@ -223,7 +173,7 @@
                   <div>
                     <h4 class="d-none d-lg-block">Order with Alexa GPT</h4>
                     <p>
-                        Order food and shop online with Alexa GPT. This upcoming feature will make your shopping experience seamless and efficient.
+                        Order food and shop online with Alexa GPT. This upcoming feature will make your shopping experience seamless and efficient
                     </p>
                   </div>
                 </a>
@@ -234,7 +184,7 @@
                   <div>
                     <h4 class="d-none d-lg-block">Get help for school or work</h4>
                     <p>
-                        Ask about anything, learn what you want, and get help with household tasks, school, university, or home office
+                        Ask about anything, learn what you want, and get help with school, university, home office or household projects
                     </p>
                   </div>
                 </a>
@@ -248,15 +198,15 @@
             <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
 
               <div class="tab-pane fade active show" id="features-tab-1">
-                <img src="assets/img/tabs-1.jpg" alt="" class="img-fluid">
+                <img src="assets/img/tabs-3.jpg" alt="" class="img-fluid">
               </div><!-- End Tab Content Item -->
 
               <div class="tab-pane fade" id="features-tab-2">
-                <img src="assets/img/tabs-2.jpg" alt="" class="img-fluid">
+                <img src="assets/img/tabs-2n.jpg" alt="" class="img-fluid">
               </div><!-- End Tab Content Item -->
 
               <div class="tab-pane fade" id="features-tab-3">
-                <img src="assets/img/tabs-3.jpg" alt="" class="img-fluid">
+                <img src="assets/img/tabs-1.1n.jpg" alt="" class="img-fluid">
               </div><!-- End Tab Content Item -->
             </div>
 
@@ -267,6 +217,83 @@
       </div>
 
     </section><!-- /Features Section -->
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Pricing</h2>
+        <p>Choose the best plan for your needs and start using Alexa GPT today</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="pricing-item featured">
+              <p class="popular">Popular</p>
+              <h3>Free Plan</h3>
+              <p class="description">Experience the basic features of Alexa GPT with GPT-4o-mini</p>
+              <h4><sup>€</sup>0<span> / month</span></h4>
+              <a href="https://www.amazon.de/dp/B0CTHQ4KSZ/" class="cta-btn">Use for free</a>
+              <p class="text-center small">No hidden costs</p>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Access to GPT-4o-mini</span></li>
+                <li><i class="bi bi-check"></i> <span>Basic Q&A functionality</span></li>
+                <li><i class="bi bi-check"></i> <span>Limited to 500 queries per day</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Email export of dialogues</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Priority support</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>API access</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Advanced analytics</span></li>
+              </ul>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="pricing-item">
+              <h3>Pro Plan</h3>
+              <p class="description">Unlock advanced features with GPT-4o and email export functionality</p>
+              <h4><sup>€</sup>4,4<span> / month</span></h4>
+              <a href="https://www.amazon.de/dp/B0CTHQ4KSZ/" class="cta-btn">Start a free trial</a>
+              <p class="text-center small">No credit card required</p>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Access to GPT-4o</span></li>
+                <li><i class="bi bi-check"></i> <span>Advanced Q&A functionality</span></li>
+                <li><i class="bi bi-check"></i> <span>Unlimited queries</span></li>
+                <li><i class="bi bi-check"></i> <span>Email export of dialogues</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Priority support</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>API access</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Advanced analytics</span></li>
+              </ul>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="pricing-item">
+              <h3>Developer Plan</h3>
+              <p class="description">Full access to all features, including API for third-party app integration</p>
+              <h4><sup>€</sup>6,9<span> / month</span></h4>
+              <a href="mailto:info@chrio.dev?subject=Request%20AlexaGPT%20skill%20developer%20plan&body=Dear%20team,%20I%20would%20kindly%20request%20the%20AlexaGPT%20skill%20developer%20plan.%20Please%20get%20back%20to%20me.%20Kind%20regards" class="cta-btn">Contact us</a>
+              <p class="text-center small">No credit card required</p>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Access to GPT-4o</span></li>
+                <li><i class="bi bi-check"></i> <span>Advanced Q&A functionality</span></li>
+                <li><i class="bi bi-check"></i> <span>Unlimited queries</span></li>
+                <li><i class="bi bi-check"></i> <span>Email export of dialogues</span></li>
+                <li><i class="bi bi-check"></i> <span>Priority support</span></li>
+                <li><i class="bi bi-check"></i> <span>API access</span></li>
+                <li><i class="bi bi-check"></i> <span>Advanced analytics</span></li>
+              </ul>
+            </div>
+          </div><!-- End Pricing Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Pricing Section -->
 
     <!-- Faq Section -->
     <section id="faq" class="faq section">
@@ -287,7 +314,7 @@
               <div class="faq-item faq-active">
                 <h3>How can I enable the Alexa GPT skill on my Amazon device?</h3>
                 <div class="faq-content">
-                  <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
+                  <p>To enable the GPT skill on your Amazon device, open the Alexa app, search for "GPT" to enable the skill, and say, "Alexa, start GPT" to start using it.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
@@ -295,7 +322,7 @@
               <div class="faq-item">
                 <h3>How can Alexa GPT improve my daily tasks?</h3>
                 <div class="faq-content">
-                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                    <p>Alexa GPT can streamline your daily tasks by providing quick answers, setting reminders, and managing your schedule efficiently. It integrates with smart home devices to control lights, thermostats, and more, making your life easier and more organized.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
@@ -303,7 +330,7 @@
               <div class="faq-item">
                 <h3>What are the benefits of using the Alexa GPT Amazon skill?</h3>
                 <div class="faq-content">
-                  <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
+                  <p>The novel Alexa skill will turn all your Amazon voice devices such as Alexa into your personal assistance which is 24/7 available. Use the Alexa GPT skill to work on any of for projects and have lenghty and in-depth dialogues to get all your problems solved.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
@@ -311,7 +338,7 @@
               <div class="faq-item">
                 <h3>What other features does the Alexa GPT Amazon skill offer?</h3>
                 <div class="faq-content">
-                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                  <p>Alex GPT Pro will offer you unlimited dialogues, GPT-4o and conversation export features. For our newest Alexa GPT Pro features please visit our blog post page.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
@@ -319,7 +346,7 @@
               <div class="faq-item">
                 <h3>What are the privacy and security measures for the Alexa GPT Amazon skill?</h3>
                 <div class="faq-content">
-                  <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in</p>
+                  <p>All your data remains secure. No personal data or conversations are store, uploaded or processes elsewhere.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
@@ -327,7 +354,7 @@
               <div class="faq-item">
                 <h3>What are the system requirements for using the Alexa GPT Amazon skill?</h3>
                 <div class="faq-content">
-                  <p>Enim ea facilis quaerat voluptas quidem et dolorem. Quis et consequatur non sed in suscipit sequi. Distinctio ipsam dolore et.</p>
+                  <p>To use the Amazon Alexa skill Alexa GPT you need any Alexa device or use it on your phone, window or MAC computer.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
@@ -348,7 +375,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Testimonials</h2>
-        <p>See what our users have to say about their experience with Alexa GPT</p>
+        <p>See what our users have to say about their experience with Alexa GPT skill</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -381,87 +408,103 @@
           </script>
           <div class="swiper-wrapper">
 
-            <div class="swiper-slide">
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <h3><a href="https://www.amazon.it/gp/customer-reviews/R1QRF5L5MF6RC8/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&ASIN=B0D1CKKTSR" target="_blank">It works</a></h3>
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  </div>
+                    <p>
+                      Unlike the Oracle of Apollo, it is much faster. At the moment, it works well on Echo 4 Plus.
+                    </p>
+                  <div class="profile mt-auto">
+                    <h3>Giovanni</h3>
+                      <h4>Alexa GPT User from Italy<br>2nd Nov. 2024</h4>
+                  </div>
+                </div>
+              </div><!-- End testimonial item -->              
+
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <h3><a href="https://www.amazon.de/gp/customer-reviews/R1INSPVB42LR6P/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&ASIN=B0CTHQ4KSZ" target="_blank">I received answers to my questions, and I am surprised at how well the AI knows everything and can provide answers</a></h3>
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  </div>
+                    <p>
+                      In the dialogue with the KE, I am surprised at how well it works and how you can ask questions and receive answers. I am amazed.
+                   </p>
+                  <div class="profile mt-auto">
+                    <h3>Peterfite</h3>
+                      <h4>Alexa GPT User from Germany<br>2nd Oct. 2024</h4>
+                  </div>
+                </div>
+              </div><!-- End testimonial item -->      
+
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <h3><a href="https://www.amazon.it/gp/customer-reviews/R2IK78N5VV88RI/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&ASIN=B0D1CKKTSR" target="_blank">Nice good</a></h3>
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  </div>
+                    <p>
+                      It works very well for me with my Echo; it explains things very clearly.
+                  </p>
+                  <div class="profile mt-auto">
+                    <h3>Massimo MEDICO</h3>
+                      <h4>Alexa GPT User from Italy<br>14th Oct. 2024</h4>
+                  </div>
+                </div>
+              </div><!-- End testimonial item -->            
+
+              <div class="swiper-slide">
               <div class="testimonial-item">
+                <h3><a href="https://www.amazon.de/gp/customer-reviews/R33GTXDVDIHN1P/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&ASIN=B0CTHQ4KSZ" target="_blank">Alexa + ChatGPT = Game Changer</a></h3>
                 <div class="stars">
                   <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                 </div>
-                <p>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  <p>
+                    So far, Alexa's abilities have basically been limited to switching lights on and off and setting timers. The idea that my good old Echo now suddenly has the brain from ChatGPT in the back of its head just sounded too crazy. And indeed, the skill didn't disappoint. Alexa has become smarter virtually overnight.
                 </p>
                 <div class="profile mt-auto">
-                  <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                  <h3>Saul Goodman</h3>
-                  <h4>Ceo &amp; Founder</h4>
+                  <h3>Anonymous</h3>
+                    <h4>Alexa GPT User from Italy<br>2nd Apr. 2024</h4>
                 </div>
               </div>
             </div><!-- End testimonial item -->
 
             <div class="swiper-slide">
               <div class="testimonial-item">
+                <h3><a href="https://www.amazon.de/gp/customer-reviews/R1MTM24AJ9BJSF/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&ASIN=B0CTHQ4KSZ" target="_blank">Finally Alexa can teach me something</a></h3>
                 <div class="stars">
                   <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                 </div>
-                <p>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                  <p>
+                    I really like the skill because I finally get my spontaneous questions answered in a meaningful way. My cat happens to have diarrhea? No problem, Alexa can finally help me. It would be too nice if I didn't have to activate A.I. first, I sometimes forget to do that.
                 </p>
                 <div class="profile mt-auto">
-                  <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                  <h3>Sara Wilsson</h3>
-                  <h4>Designer</h4>
+                  <h3>Anonymous</h3>
+                    <h4>Alexa GPT User from Germany<br>8th Oct. 2024</h4>
                 </div>
               </div>
             </div><!-- End testimonial item -->
 
             <div class="swiper-slide">
               <div class="testimonial-item">
+                <h3><a href="https://www.amazon.it/gp/customer-reviews/R1OXKBBECEQF4E/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&ASIN=B0D1CKKTSR" target="_blank">Spectacular</a></h3>
                 <div class="stars">
                   <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                 </div>
-                <p>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                  <p>
+                    Finally, a very well-made skill for ChatGPT, you can converse with it as if it were a person.. Excellent.
                 </p>
                 <div class="profile mt-auto">
-                  <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                  <h3>Jena Karlis</h3>
-                  <h4>Store Owner</h4>
+                  <h3>Giulia</h3>
+                    <h4>Alexa GPT User from Italy<br>25th Sep. 2024</h4>
                 </div>
               </div>
             </div><!-- End testimonial item -->
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                </p>
-                <div class="profile mt-auto">
-                  <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                  <h3>Matt Brandon</h3>
-                  <h4>Freelancer</h4>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                </p>
-                <div class="profile mt-auto">
-                  <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                  <h3>John Larson</h3>
-                  <h4>Entrepreneur</h4>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-          </div>
+            </div>
           <div class="swiper-pagination"></div>
         </div>
 
@@ -494,7 +537,7 @@
             <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
               <i class="bi bi-telephone"></i>
               <h3>Call Us</h3>
-              <p>+49 69 2073 9927</p>
+                <p><a href="tel:+498926204274">+49 89 26204274</a></p>
             </div>
           </div><!-- End Info Item -->
 
@@ -502,7 +545,7 @@
             <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
               <i class="bi bi-envelope"></i>
               <h3>Email Us</h3>
-              <p>info@alexagpt.world</p>
+                <p><a href="mailto:info@alexagpt.world">info@alexagpt.world</a></p>
             </div>
           </div><!-- End Info Item -->
 
@@ -510,115 +553,19 @@
 
         <div class="row gy-4 mt-1">
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2662.053091176586!2d11.55808331565868!3d48.16237997922769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479e74e4b6b6b6b7%3A0x6b6b6b6b6b6b6b6b!2sZittelstra%C3%9Fe%207%2C%2080796%20M%C3%BCnchen%2C%20Germany!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2662.331728769993!2d11.56309031565885!3d48.16275897922771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479e74e3b6b6b6b7%3A0x6b6b6b6b6b6b6b6b!2sZittelstra%C3%9Fe%207%2C%2080796%20M%C3%BCnchen%2C%20Germany!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div><!-- End Google Maps -->
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
-              </div>
-            </form>
+            {% include contact_form2.html %}
           </div><!-- End Contact Form -->
-
         </div>
-
       </div>
-
     </section><!-- /Contact Section -->
 
   </main>
 
-  <footer id="footer" class="footer position-relative light-background">
-
-    <div class="container footer-top">
-      <div class="row gy-4">
-        <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">Alexa GPT</span>
-          </a>
-          <div class="footer-contact pt-3">
-            <p>Chrio GmbH</p>
-            <p>Zittelstraße 7</p>
-            <p>80796 Munich, Germany</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+49 69 2073 9927</span></p>
-            <p><strong>Email:</strong> <span>info@alexagpt.world</span></p>
-          </div>
-          <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>GPT Skills</h4>
-          <ul>
-            <li><a href="#">Germany</a></li>
-            <li><a href="#">Italy</a></li>
-
-          </ul>
-        </div>
-
-        <div class="col-lg-4 col-md-12 footer-newsletter">
-          <h4>Our Newsletter</h4>
-          <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-          <form action="forms/newsletter.php" method="post" class="php-email-form">
-            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-          </form>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">QuickStart</strong><span>All Rights Reserved</span></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
-
-  </footer>
+  {% include footer.html %}
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -632,7 +579,7 @@
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
+  
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
