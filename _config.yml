@@ -70,3 +70,9 @@ markdown: kramdown
 # Permalinks
 permalink: /:categories/:year/:month/:day/:title/
 
+
+languages: ["en", "it", "de", "fr"]
+default_lang: "en"
+exclude_from_localization: ["javascript", "images", "css", "public"]
+parallel_localization: false
+lang_from_path: true
