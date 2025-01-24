@@ -47,7 +47,7 @@ sitemap:
 jekyll_seo_tag:
   title: "Voice GPT"
   description: "Voice GPT is an Amazon skill that integrates GPT with Alexa, enabling natural conversations, learning, and increased productivity."
-  url: "https://alexagpt.world"
+  url: "https://voicegpt.chat"
   twitter:
     username: your_twitter_username
   facebook:
