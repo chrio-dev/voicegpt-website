@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://chrio-dev.github.io/gpt/imprint/</loc>
+<loc>https://voicegpt.chat/imprint/</loc>
 </url>
 <url>
-<loc>https://chrio-dev.github.io/gpt/</loc>
+<loc>https://voicegpt.chat/</loc>
 </url>
 <url>
-<loc>https://chrio-dev.github.io/gpt/privacy_policy/</loc>
+<loc>https://voicegpt.chat/privacy_policy/</loc>
 </url>
 <url>
-<loc>https://chrio-dev.github.io/gpt/terms_of_use/</loc>
+<loc>https://voicegpt.chat/terms_of_use/</loc>
 </url>
 </urlset>

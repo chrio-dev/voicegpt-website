@@ -1,1 +1,1 @@
-Sitemap: https://chrio-dev.github.io/gpt/sitemap.xml
+Sitemap: https://voicegpt.chat/sitemap.xml
