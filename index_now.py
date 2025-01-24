@@ -7,13 +7,13 @@ headers = {
 }
 
 payload = {
-    "host": "alexagpt.world",
+    "host": "voicegpt.chat",
     "key": "f296c5404b194139b17052c28f935c7b",
-    "keyLocation": "https://alexagpt.world/f296c5404b194139b17052c28f935c7b.txt",
+    "keyLocation": "https://voicegpt.chat/f296c5404b194139b17052c28f935c7b.txt",
     "urlList": [
-        "https://alexagpt.world",
-        "https://alexagpt.world/imprint/",
-        "https://alexagpt.world/privacy_policy/"
+        "https://voicegpt.chat",
+        "https://voicegpt.chat/imprint/",
+        "https://voicegpt.chat/privacy_policy/"
     ]
 }
 
