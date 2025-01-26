@@ -173,13 +173,55 @@
       <div class="col-lg-4 col-md-12 footer-newsletter">
         <h4>Our Newsletter</h4>
         <p>Subscribe to our newsletter and receive the latest news about our Alexa skills!</p>
-        <form action="forms/newsletter.php" method="post" class="php-email-form">
-          <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+                
+        <form id="newsletterForm" class="php-email-form" action="#">
+          <div class="newsletter-form">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <input type="submit" value="Subscribe">
+          </div>
           <div class="loading">Loading</div>
           <div class="error-message"></div>
           <div class="sent-message">Your subscription request has been sent. Thank you!</div>
         </form>
         
+        <script>
+          document.getElementById("newsletterForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+        
+            const formData = new FormData(e.target);
+            const email = formData.get("email");
+        
+            // Deine Power Automate Trigger-URL
+            const powerAutomateUrl =
+              "https://prod-21.germanywestcentral.logic.azure.com:443/workflows/6cb3f82e1aed47638506959f8bba4a00/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=0ARsPH_Fc24n0j0HGnFpXM6LNOO05fvMKgBHmcdlX-Y";
+        
+            try {
+              const response = await fetch(powerAutomateUrl, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email: email }),
+              });
+        
+              if (response.ok) {
+                document.querySelector('.sent-message').style.display = 'block';
+                document.querySelector('.error-message').style.display = 'none';
+                e.target.reset();
+              } else {
+                document.querySelector('.error-message').textContent = "Fehler beim Speichern der E-Mail.";
+                document.querySelector('.error-message').style.display = 'block';
+                document.querySelector('.sent-message').style.display = 'none';
+                console.error("Fehler beim Speichern der E-Mail:", response.statusText);
+              }
+            } catch (error) {
+              document.querySelector('.error-message').textContent = "Ein Fehler ist aufgetreten.";
+              document.querySelector('.error-message').style.display = 'block';
+              document.querySelector('.sent-message').style.display = 'none';
+              console.error("Ein Fehler ist aufgetreten:", error);
+            }
+          });
+        </script>
       </div>
       
     </div>
