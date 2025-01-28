@@ -1,116 +1,67 @@
 <form id="contactForm"
-      action="https://prod-14.germanywestcentral.logic.azure.com:443/workflows/4731c010f33743b0ae8c5d177d516126/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=FupEQFEaY34nmTd4mgBu06534ZHCck4RuGN73EjjP6g"
+      action="https://YOUR-POWER-AUTOMATE-URL"
       method="post"
-      role="form"
-      class="php-email-form"
-      data-aos="fade-up"
-      data-aos-delay="400">
+      class="php-email-form">
 
-  <div class="row gy-4">
-    <div class="col-md-6">
-      <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-    </div>
-    <div class="col-md-6">
-      <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-    </div>
-    <div class="col-md-12">
-      <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-    </div>
-    <div class="col-md-12">
-      <textarea class="form-control" name="message" rows="4" placeholder="Message" required=""></textarea>
-    </div>
-
-    <!-- reCAPTCHA-Widget (unsichtbar) -->
-    <div class="form-group mt-3">
-      <div class="g-recaptcha"
-           data-sitekey="6Le8LMYqAAAAANRT8-VILfX2rqTx9K3Lf66_HKNp"
-           data-callback="onSubmit"
-           data-action="submit">
-      </div>
-    </div>
-
-    <div class="col-md-12 text-center">
-      <div class="loading">Loading</div>
-      <div class="error-message"></div>
-      <div class="sent-message">Your message has been sent. Thank you!</div>
-      <button type="submit"
-              class="g-recaptcha"
-              data-sitekey="6Le8LMYqAAAAANRT8-VILfX2rqTx9K3Lf66_HKNp"
-              data-callback="onSubmit"
-              data-action="submit">
-        Send Message
-      </button>
-    </div>
-  </div>
+  <!-- Deine Felder -->
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <input type="text" name="subject" placeholder="Subject" required>
+  <textarea name="message" rows="4" placeholder="Message" required></textarea>
+  
+  <!-- Unsichtbares reCAPTCHA (wir triggern es gleich in JS) -->
+  <!-- data-action="submit" ist optional bei v2 Invisible / v3 -->
+  <button type="submit">
+    Send Message
+  </button>
 </form>
 
-<script>
-  // reCAPTCHA Callback-Funktion
-  function onSubmit(token) {
-    // Hier: Das Formular abschicken (wird aber direkt weiter unten intercepted).
-    document.getElementById("contactForm").submit();
-  }
-</script>
-
-<!-- reCAPTCHA Script laden -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!-- reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js?render=6Le8LMYqAAAAANRT8-VILfX2rqTx9K3Lf66_HKNp"></script>
+<!-- Oben: Ersetze den "render=" Wert durch deinen Site-Key -->
 
 <script>
-  // Fängt den Submit ab, sammelt die Daten, holt das reCAPTCHA-Token und sendet alles als JSON an deine Power Automate-URL.
+  // 1) Abfangen des Submit-Events
   document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Verhindert das sofortige Absenden
-    var form = event.target;
-    var formData = new FormData(form);
-    var jsonData = {};
+    event.preventDefault(); // Verhindert Standard-Submit
+    const form = event.target;
 
-    // FormData -> JSON
-    formData.forEach((value, key) => {
-      jsonData[key] = value;
-    });
-
-    // Sobald reCAPTCHA "ready" ist, Token abrufen
+    // 2) reCAPTCHA-Token anfordern
     grecaptcha.ready(function() {
-      grecaptcha.execute('6Le8LMYqAAAAANRT8-VILfX2rqTx9K3Lf66_HKNp', { action: 'submit' })
+      grecaptcha.execute('6Le8LMYqAAAAANRT8-VILfX2rqTx9K3Lf66_HKNp', {action: 'submit'})
       .then(function(token) {
-        // Token ins JSON packen
+        
+        // 3) Formulardaten als JSON sammeln
+        const formData = new FormData(form);
+        const jsonData = {};
+        formData.forEach((value, key) => {
+          jsonData[key] = value;
+        });
+        // reCAPTCHA-Token anhängen
         jsonData['g-recaptcha-response'] = token;
 
-        console.log('JSON Data:', JSON.stringify(jsonData));
-
-        // Abschicken an Power Automate
+        // 4) Senden an Power Automate per fetch
         fetch(form.action, {
           method: 'POST',
-          body: JSON.stringify(jsonData),
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest'
-          }
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(jsonData)
         })
-        .then(response => {
-          if (response.ok) {
-            return response.text();
-          } else {
-            throw new Error(`${response.status} ${response.statusText} ${response.url}`);
-          }
-        })
+        .then(resp => resp.text())
         .then(data => {
-          // "loading" ausblenden
-          form.querySelector('.loading').classList.remove('d-block');
-
+          // Hier: Erfolg / Fehler behandeln
+          console.log(data);
           if (data.trim() === 'OK') {
-            // Erfolgsmeldung
-            form.querySelector('.sent-message').classList.add('d-block');
+            alert('Nachricht wurde gesendet!');
             form.reset();
           } else {
-            // Fehlermeldung anzeigen
-            throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + form.action);
+            alert('Fehler oder andere Rückmeldung:\n' + data);
           }
         })
-        .catch(error => {
-          form.querySelector('.error-message').innerHTML = error;
-          form.querySelector('.error-message').classList.add('d-block');
+        .catch(err => {
+          alert('Fehler: ' + err.message);
         });
-      });
-    });
+
+      }); // Ende grecaptcha.execute
+    }); // Ende grecaptcha.ready
   });
 </script>
