@@ -594,8 +594,14 @@
           </div><!-- Fine Mappa Google -->
 
           <div class="col-lg-6">
-            <!-- Contact form without contact.php -->
-<form id="contactForm" action="https://prod-03.germanywestcentral.logic.azure.com:443/workflows/e834aa3480eb4960b33fff48fc161409/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=h50ppIGoeraLTMocNWmN7Jku5VOiNCvWOdwGbKp5yyg" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
+            <form id="contactForm"
+      action="https://prod-14.germanywestcentral.logic.azure.com:443/workflows/4731c010f33743b0ae8c5d177d516126/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=FupEQFEaY34nmTd4mgBu06534ZHCck4RuGN73EjjP6g"
+      method="post"
+      role="form"
+      class="php-email-form"
+      data-aos="fade-up"
+      data-aos-delay="400">
+
   <div class="row gy-4">
     <div class="col-md-6">
       <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
@@ -609,39 +615,65 @@
     <div class="col-md-12">
       <textarea class="form-control" name="message" rows="4" placeholder="Message" required=""></textarea>
     </div>
+
+    <!-- reCAPTCHA-Widget (unsichtbar) -->
     <div class="form-group mt-3">
-      <input class="form-control" type="file" name="resume">
+      <div class="g-recaptcha"
+           data-sitekey="6Le8LMYqAAAAANRT8-VILfX2rqTx9K3Lf66_HKNp"
+           data-callback="onSubmit"
+           data-action="submit">
+      </div>
     </div>
-    <div class="form-group mt-3">
-      <div class="g-recaptcha" data-sitekey="6Le44oQqAAAAAAwsntDYFsNqoLm6_khx4VC7KH2z"></div>
-    </div>
+
     <div class="col-md-12 text-center">
       <div class="loading">Loading</div>
       <div class="error-message"></div>
       <div class="sent-message">Your message has been sent. Thank you!</div>
-      <button type="submit">Send Message</button>
+      <button type="submit"
+              class="g-recaptcha"
+              data-sitekey="6Le8LMYqAAAAANRT8-VILfX2rqTx9K3Lf66_HKNp"
+              data-callback="onSubmit"
+              data-action="submit">
+        Send Message
+      </button>
     </div>
   </div>
 </form>
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
+  // reCAPTCHA Callback-Funktion
+  function onSubmit(token) {
+    // Hier: Das Formular abschicken (wird aber direkt weiter unten intercepted).
+    document.getElementById("contactForm").submit();
+  }
+</script>
+
+<!-- reCAPTCHA Script laden -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<script>
+  // Fängt den Submit ab, sammelt die Daten, holt das reCAPTCHA-Token und sendet alles als JSON an deine Power Automate-URL.
   document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+    event.preventDefault(); // Verhindert das sofortige Absenden
     var form = event.target;
     var formData = new FormData(form);
     var jsonData = {};
 
+    // FormData -> JSON
     formData.forEach((value, key) => {
       jsonData[key] = value;
     });
 
+    // Sobald reCAPTCHA "ready" ist, Token abrufen
     grecaptcha.ready(function() {
-      grecaptcha.execute('6Le44oQqAAAAAAwsntDYFsNqoLm6_khx4VC7KH2z', {action: 'submit'}).then(function(token) {
+      grecaptcha.execute('6Le8LMYqAAAAANRT8-VILfX2rqTx9K3Lf66_HKNp', { action: 'submit' })
+      .then(function(token) {
+        // Token ins JSON packen
         jsonData['g-recaptcha-response'] = token;
 
         console.log('JSON Data:', JSON.stringify(jsonData));
 
+        // Abschicken an Power Automate
         fetch(form.action, {
           method: 'POST',
           body: JSON.stringify(jsonData),
@@ -658,16 +690,19 @@
           }
         })
         .then(data => {
+          // "loading" ausblenden
           form.querySelector('.loading').classList.remove('d-block');
-          if (data.trim() == 'OK') {
+
+          if (data.trim() === 'OK') {
+            // Erfolgsmeldung
             form.querySelector('.sent-message').classList.add('d-block');
             form.reset();
           } else {
+            // Fehlermeldung anzeigen
             throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + form.action);
           }
         })
         .catch(error => {
-          form.querySelector('.loading').classList.remove('d-block');
           form.querySelector('.error-message').innerHTML = error;
           form.querySelector('.error-message').classList.add('d-block');
         });
@@ -675,6 +710,7 @@
     });
   });
 </script>
+
           </div><!-- Fine Modulo Contatto -->
         </div>
       </div>
