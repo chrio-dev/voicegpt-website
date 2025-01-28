@@ -595,72 +595,8 @@
 
           <div class="col-lg-6">
             <form id="contactForm"
-      action="https://YOUR-POWER-AUTOMATE-URL"
-      method="post"
-      class="php-email-form">
-
-  <!-- Deine Felder -->
-  <input type="text" name="name" placeholder="Your Name" required>
-  <input type="email" name="email" placeholder="Your Email" required>
-  <input type="text" name="subject" placeholder="Subject" required>
-  <textarea name="message" rows="4" placeholder="Message" required></textarea>
-  
-  <!-- Unsichtbares reCAPTCHA (wir triggern es gleich in JS) -->
-  <!-- data-action="submit" ist optional bei v2 Invisible / v3 -->
-  <button type="submit">
-    Send Message
-  </button>
+<iframe width="640px" height="480px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=-PNyWP9Jx0GwSt9sSNMNW_plwmM0bRFJn62ASLBVuA5URVdHNUhLNDlFTldNVFRMTkZNVFJISk1IOS4u&embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
 </form>
-
-<!-- reCAPTCHA -->
-<script src="https://www.google.com/recaptcha/api.js?render=6Le8LMYqAAAAANRT8-VILfX2rqTx9K3Lf66_HKNp"></script>
-<!-- Oben: Ersetze den "render=" Wert durch deinen Site-Key -->
-
-<script>
-  // 1) Abfangen des Submit-Events
-  document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Verhindert Standard-Submit
-    const form = event.target;
-
-    // 2) reCAPTCHA-Token anfordern
-    grecaptcha.ready(function() {
-      grecaptcha.execute('6Le8LMYqAAAAANRT8-VILfX2rqTx9K3Lf66_HKNp', {action: 'submit'})
-      .then(function(token) {
-        
-        // 3) Formulardaten als JSON sammeln
-        const formData = new FormData(form);
-        const jsonData = {};
-        formData.forEach((value, key) => {
-          jsonData[key] = value;
-        });
-        // reCAPTCHA-Token anhängen
-        jsonData['g-recaptcha-response'] = token;
-
-        // 4) Senden an Power Automate per fetch
-        fetch(form.action, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(jsonData)
-        })
-        .then(resp => resp.text())
-        .then(data => {
-          // Hier: Erfolg / Fehler behandeln
-          console.log(data);
-          if (data.trim() === 'OK') {
-            alert('Nachricht wurde gesendet!');
-            form.reset();
-          } else {
-            alert('Fehler oder andere Rückmeldung:\n' + data);
-          }
-        })
-        .catch(err => {
-          alert('Fehler: ' + err.message);
-        });
-
-      }); // Ende grecaptcha.execute
-    }); // Ende grecaptcha.ready
-  });
-</script>
 
           </div><!-- End Contact Form -->
         </div>
