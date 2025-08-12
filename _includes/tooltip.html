@@ -1,0 +1,13 @@
+  <!-- Tooltip-Initialisierung für mobile Klicks -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.forEach(function (el) {
+        new bootstrap.Tooltip(el, { trigger: 'hover focus click' });
+      });
+    });
+  </script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
